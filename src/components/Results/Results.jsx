@@ -15,15 +15,20 @@ import {
 
 function Results() {
   const word = useWordParamStore((state) => state.word);
-  console.log(word);
 
-  const { data, isLoading, isError, error } = useQuery("word", async () => {
-    const response = await fetch(
-      `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,
-    );
-    const results = await response.json();
-    return results;
-  });
+  const { data, isLoading, isError, error } = useQuery(
+    ["word", word], // Add word as a dependency
+    async () => {
+      const response = await fetch(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,
+      );
+      const results = await response.json();
+      return results;
+    },
+    {
+      enabled: !!word,
+    },
+  );
 
   return (
     <Container>
@@ -31,9 +36,10 @@ function Results() {
       {isError && <ErrorMessage>{error}</ErrorMessage>}
       {data && data.length > 0 && (
         <MeaningSection>
+          <h2>{data[0].word}</h2>
           {data[0].meanings.map((meaning, index) => (
             <div key={index}>
-              <partOfSpeech>{meaning.partOfSpeech}</partOfSpeech>
+              <PartOfSpeech>{meaning.partOfSpeech}</PartOfSpeech>
               <DefinitionList>
                 {meaning.definitions.map((definition, defIndex) => (
                   <DefinitionItem key={defIndex}>
