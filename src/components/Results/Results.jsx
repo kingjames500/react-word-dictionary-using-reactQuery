@@ -34,7 +34,8 @@ function Results() {
     <Container>
       {isLoading && <LoadingMessage>Loading...</LoadingMessage>}
       {isError && <ErrorMessage>{error}</ErrorMessage>}
-      {data && data.length > 0 && (
+
+      {data && data.length > 0 ? (
         <MeaningSection>
           <h2>{data[0].word}</h2>
           {data[0].meanings.map((meaning, index) => (
@@ -50,6 +51,9 @@ function Results() {
             </div>
           ))}
         </MeaningSection>
+      ) : (
+        // Display a message if the word is not found
+        <ErrorMessage>{word} not found</ErrorMessage>
       )}
     </Container>
   );
