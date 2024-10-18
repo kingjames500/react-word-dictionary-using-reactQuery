@@ -15,29 +15,27 @@ import {
 
 function Results() {
   const word = useWordParamStore((state) => state.word);
-
   const { data, isLoading, isError, error } = useQuery(
     ["word", word], // Add word as a dependency
     async () => {
       const response = await fetch(
         `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,
       );
-
       const results = await response.json();
       return results;
     },
     {
-      enabled: !!word,
+      enabled: !!word, // Only run the query if word is not empty
     },
   );
 
   return (
     <Container>
       {isLoading && <LoadingMessage>Loading...</LoadingMessage>}
-
       {isError && <ErrorMessage>{error.message}</ErrorMessage>}
-
-      {data && data.length > 0 ? (
+      {!word ? (
+        <ErrorMessage>Please enter a word to search.</ErrorMessage>
+      ) : data && data.length > 0 ? (
         <MeaningSection>
           <h2>{data[0].word}</h2>
           {data[0].meanings.map((meaning, index) => (
@@ -54,7 +52,7 @@ function Results() {
           ))}
         </MeaningSection>
       ) : (
-        <ErrorMessage>{word} not found</ErrorMessage>
+        !isLoading && <ErrorMessage>Word not found</ErrorMessage>
       )}
     </Container>
   );
