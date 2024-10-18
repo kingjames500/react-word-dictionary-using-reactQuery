@@ -25,7 +25,9 @@ function Results() {
       return results;
     },
     {
-      enabled: !!word, // Only run the query if word is not empty
+      enabled: !!word,
+      cacheTime: Infinity,
+      staleTime: Infinity,
     },
   );
 
