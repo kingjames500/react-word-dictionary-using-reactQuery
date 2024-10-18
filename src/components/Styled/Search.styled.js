@@ -9,12 +9,6 @@ export const Container = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-export const Image = styled.img`
-  width: 4rem;
-  height: 4rem;
-  margin-bottom: 0.5rem;
-`;
-
 export const Title = styled.h3`
   font-size: 1.5rem;
   color: #333;

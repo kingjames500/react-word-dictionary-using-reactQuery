@@ -22,6 +22,7 @@ function Results() {
       const response = await fetch(
         `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,
       );
+
       const results = await response.json();
       return results;
     },
@@ -33,7 +34,8 @@ function Results() {
   return (
     <Container>
       {isLoading && <LoadingMessage>Loading...</LoadingMessage>}
-      {isError && <ErrorMessage>{error}</ErrorMessage>}
+
+      {isError && <ErrorMessage>{error.message}</ErrorMessage>}
 
       {data && data.length > 0 ? (
         <MeaningSection>
@@ -52,7 +54,6 @@ function Results() {
           ))}
         </MeaningSection>
       ) : (
-        // Display a message if the word is not found
         <ErrorMessage>{word} not found</ErrorMessage>
       )}
     </Container>
