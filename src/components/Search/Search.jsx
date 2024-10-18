@@ -21,7 +21,7 @@ function Search() {
   };
   return (
     <Container>
-      <Image src="/src/assets/dictionary.png" alt="" />
+      <Image src="../../assets/dictionary.png" alt="" />
       <Title>enter a word to search</Title>
       <FormGroup className="form-group">
         <label htmlFor="word" className="form-group-label">
