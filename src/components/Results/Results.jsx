@@ -1,6 +1,5 @@
-import React from "react";
 import { useQuery } from "react-query";
-
+import { ThreeDots } from "react-loader-spinner";
 import useWordParamStore from "../stores/WordParam";
 
 import {
@@ -26,14 +25,27 @@ function Results() {
     },
     {
       enabled: !!word,
-      cacheTime: Infinity,
-      staleTime: Infinity,
+      // cacheTime: Infinity,
+      // staleTime: Infinity,
     },
   );
 
   return (
     <Container>
-      {isLoading && <LoadingMessage>Loading...</LoadingMessage>}
+      {isLoading && (
+        <LoadingMessage>
+          <ThreeDots
+            visible={true}
+            height="80"
+            width="80"
+            color="blue"
+            radius="7"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </LoadingMessage>
+      )}
       {isError && <ErrorMessage>{error.message}</ErrorMessage>}
       {!word ? (
         <ErrorMessage>Please enter a word to search.</ErrorMessage>
@@ -54,7 +66,7 @@ function Results() {
           ))}
         </MeaningSection>
       ) : (
-        !isLoading && <ErrorMessage>Word not found</ErrorMessage>
+        !isLoading && <ErrorMessage>{word} not found</ErrorMessage>
       )}
     </Container>
   );
