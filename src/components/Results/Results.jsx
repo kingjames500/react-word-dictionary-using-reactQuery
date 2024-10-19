@@ -26,8 +26,8 @@ function Results() {
     },
     {
       enabled: !!word,
-      // cacheTime: Infinity,
-      // staleTime: Infinity,
+      cacheTime: Infinity,
+      staleTime: Infinity,
     },
   );
 
@@ -37,13 +37,11 @@ function Results() {
         <LoadingMessage>
           <ThreeDots
             visible={true}
-            height="80"
-            width="80"
+            height="60"
+            width="60"
             color="blue"
             radius="7"
             ariaLabel="three-dots-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
           />
         </LoadingMessage>
       )}
