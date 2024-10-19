@@ -10,6 +10,7 @@ import {
   PartOfSpeech,
   DefinitionList,
   DefinitionItem,
+  ErrorOutputMessage,
 } from "../Styled/Results.styled";
 
 function Results() {
@@ -66,7 +67,11 @@ function Results() {
           ))}
         </MeaningSection>
       ) : (
-        !isLoading && <ErrorMessage>{word} not found</ErrorMessage>
+        !isLoading && (
+          <ErrorMessage>
+            <ErrorOutputMessage>{word} not found</ErrorOutputMessage>
+          </ErrorMessage>
+        )
       )}
     </Container>
   );

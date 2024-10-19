@@ -19,6 +19,14 @@ export const ErrorMessage = styled.p`
   text-align: center;
   font-size: 1.6rem;
   text-shadow: 1px 1px 1px #ccc;
+  font-weight: 650;
+  color: blue;
+`;
+
+export const ErrorOutputMessage = styled.span`
+  font-style: italic;
+  color: red;
+  text-transform: capitalize;
 `;
 
 export const MeaningSection = styled.div`
