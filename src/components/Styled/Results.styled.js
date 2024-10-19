@@ -8,16 +8,25 @@ export const Container = styled.div`
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 `;
 
-export const LoadingMessage = styled.p`
-  text-align: center;
-  font-size: 1.6rem;
-  color: #333;
+export const LoadingMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
 
 export const ErrorMessage = styled.p`
   text-align: center;
   font-size: 1.6rem;
   text-shadow: 1px 1px 1px #ccc;
+  font-weight: 650;
+  color: blue;
+`;
+
+export const ErrorOutputMessage = styled.span`
+  font-style: italic;
+  color: red;
+  text-transform: capitalize;
 `;
 
 export const MeaningSection = styled.div`
